@@ -123,8 +123,19 @@ import streamlit as st
 
 # character_Func()
 
-name = list("mmanuel")
-name[0] = "E"
-''.join(name)
-st.write(name)
+def uniqueList():
+
+  diction = {}
+
+  for i in list:
+    if i in diction:
+      diction[i] += 1
+    else:
+      diction[i] = 1
+      
+  st.write(diction)
+
+count = uniqueList([1,1,1,1,1,3,2,3,2,4,5,3,2,2,3,2])
+set(count)
+  
 
