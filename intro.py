@@ -20,7 +20,7 @@ def hangman():
   play = 0
 
   while play < 3:
-    guess = input("Enter a character")
+    guess = st.text_input("Enter a character")
     if guess.isalpha() and len(guess) == 1:
         st.write(guess)
         if guess in word:
