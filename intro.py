@@ -88,24 +88,39 @@ import streamlit as st
 
 # character_Func()
 
-Students = {'Student_1' : {'name' : 'Zidane',
-                           'age' : 23,
-                           'class' : 'SS3'},
-            'Student_2' : {'name' : 'Messi',
-                           'age' : 19,
-                           'class' : 'La Masia 3'},
-            'Student_3' : {'name' : 'Ronaldinho',
-                           'age' : 34,
-                           'class' : 'La Masia G'}}
+# Students = {'Student_1' : {'name' : 'Zidane',
+#                            'age' : 23,
+#                            'class' : 'SS3'},
+#             'Student_2' : {'name' : 'Messi',
+#                            'age' : 19,
+#                            'class' : 'La Masia 3'},
+#             'Student_3' : {'name' : 'Ronaldinho',
+#                            'age' : 34,
+#                            'class' : 'La Masia G'}}
 
-names = []
-age = []
+# names = []
+# age = []
 
-for student in Students:
-  names.append(Students[student]["name"])
-  age.append(Students[student]["age"])
+# for student in Students:
+#   names.append(Students[student]["name"])
+#   age.append(Students[student]["age"])
 
-st.write(names)
-st.write(age)
+# st.write(names)
+# st.write(age)
+
+def character_Func():
+   user_Character = st.text_input("Enter a word:")
+   counter = 0
+
+   list_Characters = []
+
+   for char in user_Character:
+     if counter % 2 != 0:
+         list_Characters.append(char)
+     counter += 1
+
+   st.write(list_Characters)
+
+character_Func()
 
 
