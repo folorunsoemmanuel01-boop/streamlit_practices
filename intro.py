@@ -70,10 +70,11 @@ def guess_number():
       st.write(f"Congratulations, {name} You got the number")
 
       st.write("\n")
-      decision = text_input("Do you want to continue? Yes or No")
+      
+      decision = st.text_input("Do you want to continue? Yes or No")
       if decision.lower == "yes":
         attempts = 10
-        name = text_input("Enter your name")
+        name = st.text_input("Enter your name")
         st.write(f"Hola, {name}")
         randomNumber = random.randint(1,20)
         
