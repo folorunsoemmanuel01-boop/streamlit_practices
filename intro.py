@@ -135,7 +135,7 @@ def uniqueList():
       
   st.write(diction)
 
-count = uniqueList([1,1,1,1,1,3,2,3,2,4,5,3,2,2,3,2])
-st.write(set(count))
+uniqueList([1,1,1,1,1,3,2,3,2,4,5,3,2,2,3,2])
+
   
 
