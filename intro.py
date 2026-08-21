@@ -1,13 +1,13 @@
 import streamlit as st
 
-# def main():
-#   st.title("Introduction to Streamlit")
+def main():
+   st.title("Introduction to Streamlit")
 
-#   name = st.text_input("Enter your name:")
-#   st.write(f"Hello,{name}")
+   name = st.text_input("Enter your name:")
+   st.write(f"Hello,{name}")
 
-# if __name__=="__main__":
-#   main()
+ if __name__=="__main__":
+   main()
 
 # import random
 
@@ -123,19 +123,6 @@ import streamlit as st
 
 # character_Func()
 
-def uniqueList():
-
-  diction = {}
-
-  for i in list:
-    if i in diction:
-      diction[i] += 1
-    else:
-      diction[i] = 1
-      
-  st.write(diction)
-
-uniqueList([1,1,1,1,1,3,2,3,2,4,5,3,2,2,3,2])
 
   
 
