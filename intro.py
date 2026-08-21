@@ -96,7 +96,8 @@ Students = {'Student_1' : {'name' : 'Zidane',
                            'class' : 'La Masia 3'}
             'Student_3' : {'name' : 'Ronaldinho',
                            'age' : 34,
-                           'class' : La Masia G'}
+                           'class' : La Masia G'}}
+
 names = []
 age = []
 
