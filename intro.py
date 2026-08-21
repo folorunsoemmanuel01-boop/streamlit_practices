@@ -84,7 +84,7 @@ def character_Func():
         list_Characters.append(char)
     counter += 1
 
-  return list_Characters
+  st.write(list_Characters)
 
 character_Func()
 
