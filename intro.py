@@ -36,39 +36,56 @@ import streamlit as st
 #   st.write(f"2 * {i} = {2*i}")
 
 
-import random
+# import random
 
-def hangman():
+# def hangman():
 
-  words = ["banana", "apples", "salmon"]
+#   words = ["banana", "apples", "salmon"]
 
-  word = random.choice(words)
+#   word = random.choice(words)
 
-  progress = ["_"] * len(word)
+#   progress = ["_"] * len(word)
 
-  st.write("WELCOME TO HANGMAN")
+#   st.write("WELCOME TO HANGMAN")
 
-  while True:
+#   while True:
 
-    st.write("\nWord:", " ".join(progress))
+#     st.write("\nWord:", " ".join(progress))
 
-    guess = st.text_input("Guess a letter: ").lower()
+#     guess = st.text_input("Guess a letter: ").lower()
 
-    if guess in word:
+#     if guess in word:
 
-      for i in range(len(word)):
-          if word[i] == guess:
-            progress[i] = guess
+#       for i in range(len(word)):
+#           if word[i] == guess:
+#             progress[i] = guess
             
-      st.write("Correct")
+#       st.write("Correct")
 
-    else:
-      st.write("Wrong guess")
+#     else:
+#       st.write("Wrong guess")
 
-    if "_" not in progress:
-      st.write("\nCongratulations!")
-      st.write("The word was:", word)
-      st.write("You Win")
-      break
+#     if "_" not in progress:
+#       st.write("\nCongratulations!")
+#       st.write("The word was:", word)
+#       st.write("You Win")
+#       break
 
-hangman()
+# hangman()
+
+def character_Func():
+  user_Character = st.text_input("Enter a word:")
+  counter = 0
+
+  list_Characters = []
+
+  for char in user_Character:
+    if counter % 2 == 0:
+        list_Characters.append(char)
+    counter += 1
+
+  return list_Characters
+
+character_Func()
+
+
