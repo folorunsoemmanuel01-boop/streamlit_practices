@@ -67,7 +67,7 @@ def guess_number():
       score_sheet[name] = 'completed'
       time.sleep(1)
       st.write(score_sheet)
-      st.write(f"Congratulations, {name} You got the number)
+      st.write(f"Congratulations, {name} You got the number")
 
       st.write("\n")
       decision = text_input("Do you want to continue? Yes or No")
