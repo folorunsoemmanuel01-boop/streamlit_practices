@@ -27,7 +27,7 @@ def hangman():
         st.write(f"Yes, The character {guess} is in {word}") 
       else:
         st.write("No")
-    else:
+  else:
       st.write("Invalid character")
 
 hangman()
