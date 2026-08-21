@@ -1,4 +1,4 @@
-# import streamlit as st
+import streamlit as st
 
 # def main():
 #   st.title("Introduction to Streamlit")
@@ -13,6 +13,7 @@ import random
 
 def hangman():
   st.title("Hangman Game")
+  
   words = ["python","game"]
   word = random.choice(words)
 
