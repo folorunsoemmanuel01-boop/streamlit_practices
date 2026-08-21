@@ -108,19 +108,23 @@ import streamlit as st
 # st.write(names)
 # st.write(age)
 
-def character_Func():
-   user_Character = st.text_input("Enter a word:")
-   counter = 0
+# def character_Func():
+#    user_Character = st.text_input("Enter a word:")
+#    counter = 0
 
-   list_Characters = []
+#    list_Characters = []
 
-   for char in user_Character:
-     if counter % 2 != 0:
-         list_Characters.append(char)
-     counter += 1
+#    for char in user_Character:
+#      if counter % 2 != 0:
+#          list_Characters.append(char)
+#      counter += 1
 
-   st.write(list_Characters)
+#    st.write(list_Characters)
 
-character_Func()
+# character_Func()
+
+name = list("mmanuel")
+name[0] = "E"
+''.join(name)
 
 
