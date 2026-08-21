@@ -6,7 +6,7 @@ def main():
    name = st.text_input("Enter your name:")
    st.write(f"Hello,{name}")
 
- if __name__=="__main__":
+if __name__=="__main__":
    main()
 
 # import random
