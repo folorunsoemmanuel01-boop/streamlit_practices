@@ -90,10 +90,10 @@ import streamlit as st
 
 Students = {'Student_1' : {'name' : 'Zidane',
                            'age' : 23,
-                           'class' : 'SS3'}
+                           'class' : 'SS3'},
             'Student_2' : {'name' : 'Messi',
                            'age' : 19,
-                           'class' : 'La Masia 3'}
+                           'class' : 'La Masia 3'},
             'Student_3' : {'name' : 'Ronaldinho',
                            'age' : 34,
                            'class' : 'La Masia G'}}
