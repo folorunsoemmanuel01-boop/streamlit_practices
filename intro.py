@@ -84,7 +84,7 @@ def guess_number():
         st.write("Thank u 4 playing")
         st.write(score_sheet)
 
-      if attempts == 0
+      if attempts == 0:
           st.write(f"You have {attempts} atempts left")
           score_sheet[name] = 'failed'
           st.write(score_sheet)
