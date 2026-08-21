@@ -103,7 +103,7 @@ age = []
 
 for student in Students:
   names.append(Students[student]["name"])
-  age.append(Students[student]["age"]
+  age.append(Students[student]["age"])
 
 st.write(names)
 st.write(age)
