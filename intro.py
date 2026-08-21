@@ -37,87 +37,37 @@ import streamlit as st
 
 
 import random
-import time
 
-st.title("🎯 Guess the Number Game")
+def hangman():
 
-# Initialize game
-if "randomNumber" not in st.session_state:
-    st.session_state.randomNumber = random.randint(1, 20)
+  words = ["banana", "apples", "salmon"]
 
-if "attempts" not in st.session_state:
-    st.session_state.attempts = 10
+  word = random.choice(words)
 
-if "name" not in st.session_state:
-    st.session_state.name = ""
+  progress = ["_"] * len(word)
 
-if "score_sheet" not in st.session_state:
-    st.session_state.score_sheet = {}
+  st.write("WELCOME TO HANGMAN")
 
-# Get name
-if st.session_state.name == "":
-    name = st.text_input("Enter your name")
+  while True:
 
-    if st.button("Start Game"):
-        if name:
-            st.session_state.name = name
-            st.rerun()
-        else:
-            st.warning("Please enter your name")
+    st.write("\nWord:", " ".join(progress))
 
-else:
-    st.write(f"Hola, {st.session_state.name} 👋")
+    guess = st.text_input("Guess a letter: ").lower()
 
-    st.write(f"You have {st.session_state.attempts} attempts left")
+    if guess in word:
 
-    # Number input
-    guess_number = st.number_input(
-        "Enter a number",
-        min_value=1,
-        max_value=20,
-        step=1
-    )
+      for i in range(len(word)):
+          if word[i] == guess:
+            progress[i] = guess
+      st.write("Correct")
 
-    if st.button("Guess"):
+    else:
+      st.write("Wrong guess")
 
-        if st.session_state.attempts <= 0:
-            st.error("You have no attempts left!")
+    if "_" not in progress:
+      st.write("\nCongratulations!")
+      st.write("The word was:", word)
+      st.write("You Win")
+      break
 
-        elif guess_number > st.session_state.randomNumber:
-            st.session_state.attempts -= 1
-            st.warning("Too High")
-
-        elif guess_number < st.session_state.randomNumber:
-            st.session_state.attempts -= 1
-            st.warning("Too Low")
-
-        else:
-            st.success(
-                f"Congratulations, {st.session_state.name}! "
-                f"You got the number 🎉"
-            )
-
-            st.session_state.score_sheet[st.session_state.name] = "completed"
-
-            st.write(st.session_state.score_sheet)
-
-            if st.button("Play Again"):
-                st.session_state.randomNumber = random.randint(1, 20)
-                st.session_state.attempts = 10
-                st.rerun()
-
-    # Game over
-    if st.session_state.attempts == 0:
-        st.error(
-            f"Game Over! The number was "
-            f"{st.session_state.randomNumber}"
-        )
-
-        st.session_state.score_sheet[st.session_state.name] = "completed"
-
-        st.write(st.session_state.score_sheet)
-
-        if st.button("Play Again"):
-            st.session_state.randomNumber = random.randint(1, 20)
-            st.session_state.attempts = 10
-            st.rerun()
+hangman()
