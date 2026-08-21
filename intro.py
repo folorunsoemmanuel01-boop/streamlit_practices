@@ -59,6 +59,7 @@ def hangman():
       for i in range(len(word)):
           if word[i] == guess:
             progress[i] = guess
+            
       st.write("Correct")
 
     else:
