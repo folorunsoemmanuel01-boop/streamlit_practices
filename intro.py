@@ -35,59 +35,89 @@ import streamlit as st
 # for i in range(1,11):
 #   st.write(f"2 * {i} = {2*i}")
 
+
 import random
 import time
 
-def guess_number():
-  randomNumber = random.randint(1,20)
-  st.write("WELCOME to Guess The Number GAME")
-  name = st.text_input("Enter your name:")
-  st.write(f"Hola!, {name}")
+st.title("🎯 Guess the Number Game")
 
-  attempts = 10
-  play = True
+# Initialize game
+if "randomNumber" not in st.session_state:
+    st.session_state.randomNumber = random.randint(1, 20)
 
-  score_sheet = {}
+if "attempts" not in st.session_state:
+    st.session_state.attempts = 10
 
-  while play:
-    guess_number = int(st.text_input("Enter a number"))
-    if guess_number > randomNumber:
-      attempts -= 1
-      time.sleep(1)
-      st.write(f"You have {attempts} attempts left")
-      st.write("Too High")
+if "name" not in st.session_state:
+    st.session_state.name = ""
 
-    elif guess_number < randomNumber:
-      attempts -= 1
-      time.sleep(1)
-      st.write(f"You have {attempts} attempts left")
-      st.write("Too Low")
+if "score_sheet" not in st.session_state:
+    st.session_state.score_sheet = {}
 
-    else:
-      score_sheet[name] = 'completed'
-      time.sleep(1)
-      st.write(score_sheet)
-      st.write(f"Congratulations, {name} You got the number")
+# Get name
+if st.session_state.name == "":
+    name = st.text_input("Enter your name")
 
-      st.write("\n")
-      
-      decision = st.text_input("Do you want to continue? Yes or No")
-      if decision.lower == "yes":
-        attempts = 10
-        name = st.text_input("Enter your name")
-        st.write(f"Hola, {name}")
-        randomNumber = random.randint(1,20)
-        
-      else:
-        play = False
-        time.sleep(1)
-        score_sheet[name] = 'completed'
-        st.write("Thank u 4 playing")
-        st.write(score_sheet)
+    if st.button("Start Game"):
+        if name:
+            st.session_state.name = name
+            st.rerun()
+        else:
+            st.warning("Please enter your name")
 
-      if attempts == 0:
-          st.write(f"You have {attempts} atempts left")
-          score_sheet[name] = 'failed'
-          st.write(score_sheet)
+else:
+    st.write(f"Hola, {st.session_state.name} 👋")
 
-guess_number()
+    st.write(f"You have {st.session_state.attempts} attempts left")
+
+    # Number input
+    guess_number = st.number_input(
+        "Enter a number",
+        min_value=1,
+        max_value=20,
+        step=1
+    )
+
+    if st.button("Guess"):
+
+        if st.session_state.attempts <= 0:
+            st.error("You have no attempts left!")
+
+        elif guess_number > st.session_state.randomNumber:
+            st.session_state.attempts -= 1
+            st.warning("Too High")
+
+        elif guess_number < st.session_state.randomNumber:
+            st.session_state.attempts -= 1
+            st.warning("Too Low")
+
+        else:
+            st.success(
+                f"Congratulations, {st.session_state.name}! "
+                f"You got the number 🎉"
+            )
+
+            st.session_state.score_sheet[st.session_state.name] = "completed"
+
+            st.write(st.session_state.score_sheet)
+
+            if st.button("Play Again"):
+                st.session_state.randomNumber = random.randint(1, 20)
+                st.session_state.attempts = 10
+                st.rerun()
+
+    # Game over
+    if st.session_state.attempts == 0:
+        st.error(
+            f"Game Over! The number was "
+            f"{st.session_state.randomNumber}"
+        )
+
+        st.session_state.score_sheet[st.session_state.name] = "completed"
+
+        st.write(st.session_state.score_sheet)
+
+        if st.button("Play Again"):
+            st.session_state.randomNumber = random.randint(1, 20)
+            st.session_state.attempts = 10
+            st.rerun()
