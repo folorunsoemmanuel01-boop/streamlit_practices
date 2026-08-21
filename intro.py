@@ -126,5 +126,5 @@ import streamlit as st
 name = list("mmanuel")
 name[0] = "E"
 ''.join(name)
-
+st.write(name)
 
