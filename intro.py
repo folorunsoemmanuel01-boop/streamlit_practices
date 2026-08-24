@@ -43,7 +43,7 @@ def hangman():
 
         for character in word:
             if character in guessed:
-                display_word += character + " "
+                display_word += character + ""
             else:
                 display_word += "_"
 
