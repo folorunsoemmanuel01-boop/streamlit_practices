@@ -17,6 +17,8 @@ def hangman():
     if "word" not in st.session_state:
        words = ["python","game"]
        st.session_state.word = random.choice(words)
+
+    if "guessed" not in st.session_state:
        st.session_state = []
 
     word = st.session_state.word
