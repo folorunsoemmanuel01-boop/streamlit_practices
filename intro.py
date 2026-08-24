@@ -9,119 +9,119 @@ def main():
 if __name__=="__main__":
    main()
 
-import random
+# import random
 
-def hangman():
-   st.title("Hangman Game")
+# def hangman():
+#    st.title("Hangman Game")
   
-   words = ["python","game"]
-   word = random.choice(words)
+#    words = ["python","game"]
+#    word = random.choice(words)
 
-   guess = st.text_input("Enter a character")
+#    guess = st.text_input("Enter a character")
   
-   if guess.isalpha() and len(guess) == 1:
-       st.write(guess)
+#    if guess.isalpha() and len(guess) == 1:
+#        st.write(guess)
     
-       if guess in word:
-         st.write(f"The position of the guess is {word.find(guess)}")
-         st.write(f"Yes, The character {guess} is in {word}") 
-       else:
-         st.write("No")
-   else:
-      st.write("Invalid character")
+#        if guess in word:
+#          st.write(f"The position of the guess is {word.find(guess)}")
+#          st.write(f"Yes, The character {guess} is in {word}") 
+#        else:
+#          st.write("No")
+#    else:
+#       st.write("Invalid character")
 
-hangman()
+# hangman()
 
-for i in range(1,11):
-   st.write(f"2 * {i} = {2*i}")
+# for i in range(1,11):
+#    st.write(f"2 * {i} = {2*i}")
 
 
-import random
+# import random
 
-def hangman():
+# def hangman():
 
-   words = ["banana", "apples", "salmon"]
+#    words = ["banana", "apples", "salmon"]
 
-   word = random.choice(words)
+#    word = random.choice(words)
 
-   progress = ["_"] * len(word)
+#    progress = ["_"] * len(word)
 
-   st.write("WELCOME TO HANGMAN")
+#    st.write("WELCOME TO HANGMAN")
 
-   while True:
+#    while True:
 
-     st.write("\nWord:", " ".join(progress))
+#      st.write("\nWord:", " ".join(progress))
 
-     guess = st.text_input("Guess a letter: ").lower()
+#      guess = st.text_input("Guess a letter: ").lower()
 
-     if guess in word:
+#      if guess in word:
 
-       for i in range(len(word)):
-           if word[i] == guess:
-             progress[i] = guess
+#        for i in range(len(word)):
+#            if word[i] == guess:
+#              progress[i] = guess
             
-       st.write("Correct")
+#        st.write("Correct")
 
-     else:
-       st.write("Wrong guess")
+#      else:
+#        st.write("Wrong guess")
 
-     if "_" not in progress:
-       st.write("\nCongratulations!")
-       st.write("The word was:", word)
-       st.write("You Win")
-       break
+#      if "_" not in progress:
+#        st.write("\nCongratulations!")
+#        st.write("The word was:", word)
+#        st.write("You Win")
+#        break
 
-hangman()
+# hangman()
 
-def character_Func():
-   user_Character = st.text_input("Enter a word:")
-   counter = 0
+# def character_Func():
+#    user_Character = st.text_input("Enter a word:")
+#    counter = 0
 
-   list_Characters = []
+#    list_Characters = []
 
-   for char in user_Character:
-     if counter % 2 == 0:
-         list_Characters.append(char)
-     counter += 1
+#    for char in user_Character:
+#      if counter % 2 == 0:
+#          list_Characters.append(char)
+#      counter += 1
 
-   st.write(list_Characters)
+#    st.write(list_Characters)
 
-character_Func()
+# character_Func()
 
-Students = {'Student_1' : {'name' : 'Zidane',
-                            'age' : 23,
-                            'class' : 'SS3'},
-             'Student_2' : {'name' : 'Messi',
-                            'age' : 19,
-                            'class' : 'La Masia 3'},
-             'Student_3' : {'name' : 'Ronaldinho',
-                            'age' : 34,
-                            'class' : 'La Masia G'}}
+# Students = {'Student_1' : {'name' : 'Zidane',
+#                             'age' : 23,
+#                             'class' : 'SS3'},
+#              'Student_2' : {'name' : 'Messi',
+#                             'age' : 19,
+#                             'class' : 'La Masia 3'},
+#              'Student_3' : {'name' : 'Ronaldinho',
+#                             'age' : 34,
+#                             'class' : 'La Masia G'}}
 
-names = []
-age = []
+# names = []
+# age = []
 
-for student in Students:
-   names.append(Students[student]["name"])
-   age.append(Students[student]["age"])
+# for student in Students:
+#    names.append(Students[student]["name"])
+#    age.append(Students[student]["age"])
 
-st.write(names)
-st.write(age)
+# st.write(names)
+# st.write(age)
 
-def character_Func():
-    user_Character = st.text_input("Enter a word:")
-    counter = 0
+# def character_Func():
+#     user_Character = st.text_input("Enter a word:")
+#     counter = 0
 
-    list_Characters = []
+#     list_Characters = []
 
-    for char in user_Character:
-      if counter % 2 != 0:
-          list_Characters.append(char)
-      counter += 1
+#     for char in user_Character:
+#       if counter % 2 != 0:
+#           list_Characters.append(char)
+#       counter += 1
 
-    st.write(list_Characters)
+#     st.write(list_Characters)
 
-character_Func()
+# character_Func()
 
 
   
