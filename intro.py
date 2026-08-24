@@ -46,7 +46,7 @@ def hangman():
        st.write("Word:", display_word)
 
        if all (character in guessed for character in word):
-         st.success(f"You Won! The word was **{word}**)
+         st.success(f"You Won! The word was **{word}**")
 
     else:
        st.write("Invalid character")
