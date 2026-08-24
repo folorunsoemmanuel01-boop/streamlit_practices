@@ -13,20 +13,41 @@ import random
 
 def hangman():
     st.title("Hangman Game")
-  
-    words = ["python","game"]
-    word = random.choice(words)
+
+   if "word" not in st.session_state:
+       words = ["python","game"]
+       st.session_state.word = random.choice(words)
+       st.session_state = []
+
+    word = st.session_state.word
+    guesssed = st.session_state.guessed
 
     guess = st.text_input("Enter a character")
   
     if guess.isalpha() and len(guess) == 1:
-        st.write(guess)
+
+       if guess not in guessed:
+          guessed.append(guess)
     
         if guess in word:
           st.write(f"The position of the guess is {word.find(guess)}")
           st.write(f"Yes, The character {guess} is in {word}") 
         else:
           st.write("No")
+
+      display_word = ""
+
+      for character in word:
+         if character in guessed:
+            display_word += character + " "
+         else:
+            display_word += "_ "
+
+      st.write("Word:", display_word)
+
+      if all (character in guessed for character in word):
+         st.success(f"You Won! The word was **{word}**)
+
     else:
        st.write("Invalid character")
 
