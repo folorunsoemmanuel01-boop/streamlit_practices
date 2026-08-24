@@ -9,7 +9,54 @@ def main():
 if __name__=="__main__":
    main()
 
+import random
+import streamlit as st
 
+
+def hangman():
+    st.title("Hangman Game")
+
+    if "word" not in st.session_state:
+        words = ["python", "game", "school"]
+        st.session_state["word"] = random.choice(words)
+
+    if "guessed" not in st.session_state:
+        st.session_state["guessed"] = []
+
+    word = st.session_state["word"]
+    guessed = st.session_state["guessed"]
+
+    guess = st.text_input("Enter a character")
+
+    if guess.isalpha() and len(guess) == 1:
+
+        if guess not in guessed:
+            guessed.append(guess)
+
+        if guess in word:
+            st.write(f"Yes! The character {guess} is in {word}")
+            st.write(f"The position is {word.find(guess)}")
+        else:
+            st.write(f"No! {guess} is not in the word")
+
+        display_word = ""
+
+        for character in word:
+            if character in guessed:
+                display_word += character + ""
+            else:
+                display_word += "_"
+
+        st.write("Word:", display_word)
+
+        if all(character in guessed for character in word):
+            st.success(f"You won! The word was {word}")
+
+    elif guess:
+        st.write("Invalid character")
+
+
+hangman()
 
 # for i in range(1,11):
 #    st.write(f"2 * {i} = {2*i}")
