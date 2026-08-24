@@ -45,7 +45,7 @@ def hangman():
             if character in guessed:
                 display_word += character + " "
             else:
-                display_word += "_ "
+                display_word += "_"
 
         st.write("Word:", display_word)
 
