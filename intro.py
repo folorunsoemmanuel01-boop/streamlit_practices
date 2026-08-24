@@ -14,7 +14,7 @@ import random
 def hangman():
     st.title("Hangman Game")
 
-   if "word" not in st.session_state:
+    if "word" not in st.session_state:
        words = ["python","game"]
        st.session_state.word = random.choice(words)
        st.session_state = []
@@ -29,23 +29,23 @@ def hangman():
        if guess not in guessed:
           guessed.append(guess)
     
-        if guess in word:
+       if guess in word:
           st.write(f"The position of the guess is {word.find(guess)}")
           st.write(f"Yes, The character {guess} is in {word}") 
-        else:
+       else:
           st.write("No")
 
-      display_word = ""
+       display_word = ""
 
-      for character in word:
+       for character in word:
          if character in guessed:
             display_word += character + " "
          else:
             display_word += "_ "
 
-      st.write("Word:", display_word)
+       st.write("Word:", display_word)
 
-      if all (character in guessed for character in word):
+       if all (character in guessed for character in word):
          st.success(f"You Won! The word was **{word}**)
 
     else:
