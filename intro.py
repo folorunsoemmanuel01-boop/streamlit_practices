@@ -13,64 +13,47 @@ import random
 import streamlit as st
 
 
-def new_game():
-    words = ["python", "game", "banana", "computer", "programming"]
-    st.session_state["word"] = random.choice(words)
-    st.session_state["guessed"] = []
-    st.session_state["game_over"] = False
-
-
 def hangman():
     st.title("Hangman Game")
 
-    # Start the first game
     if "word" not in st.session_state:
-        new_game()
+        words = ["python", "game", "school"]
+        st.session_state["word"] = random.choice(words)
+
+    if "guessed" not in st.session_state:
+        st.session_state["guessed"] = []
 
     word = st.session_state["word"]
     guessed = st.session_state["guessed"]
 
-    # Show the current word
-    display_word = ""
-
-    for character in word:
-        if character in guessed:
-            display_word += character + " "
-        else:
-            display_word += "_ "
-
-    st.write("Word:", display_word)
-
-    # If the player has won
-    if all(character in guessed for character in word):
-        st.success(f"🎉 You won! The word was {word}")
-
-        if st.button("Play Again"):
-            new_game()
-            st.rerun()
-
-        return
-
-    # Get a guess
     guess = st.text_input("Enter a character")
 
-    if guess:
+    if guess.isalpha() and len(guess) == 1:
 
-        if not guess.isalpha() or len(guess) != 1:
-            st.error("Please enter ONE alphabet character.")
-
-        elif guess in guessed:
-            st.warning("You already guessed that character!")
-
-        else:
+        if guess not in guessed:
             guessed.append(guess)
 
-            if guess in word:
-                st.success(f"Yes! '{guess}' is in the word.")
-            else:
-                st.error(f"No! '{guess}' is not in the word.")
+        if guess in word:
+            st.write(f"Yes! The character {guess} is in {word}")
+            st.write(f"The position is {word.find(guess)}")
+        else:
+            st.write(f"No! {guess} is not in the word")
 
-            st.rerun()
+        display_word = ""
+
+        for character in word:
+            if character in guessed:
+                display_word += character + ""
+            else:
+                display_word += "_"
+
+        st.write("Word:", display_word)
+
+        if all(character in guessed for character in word):
+            st.success(f"You won! The word was {word}")
+
+    elif guess:
+        st.write("Invalid character")
 
 
 hangman()
