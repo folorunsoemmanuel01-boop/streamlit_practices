@@ -18,9 +18,7 @@ def hangman():
 
     difficulty = st.radio(
        "Choose difficulty:", 
-       options= ["Easy", "Medium", "Hard"], 
-       horizotal=True, 
-       key= "difficulty"
+       ["Easy", "Medium", "Hard"]
     ) 
 
     if difficulty == "Easy":
