@@ -16,6 +16,15 @@ import streamlit as st
 def hangman():
     st.title("Hangman Game")
 
+    difficulty = st.radio("Choose difficulty:",["Easy","Medium","Hard"])
+
+    if difficulty == "Easy":
+       st.write("You selected Easy")
+    elif diffculty == "Medium":
+       st.write("You selected Medium")
+    else: 
+       st.write("You selected Hard")
+
     if "word" not in st.session_state:
         words = ["python", "game", "school"]
         st.session_state["word"] = random.choice(words)
