@@ -38,7 +38,6 @@ def hangman():
             guessed.append(guess)
 
         if guess in word:
-            st.write(f"Yes! The character {guess} is in {word}")
             st.write(f"The position is {word.find(guess)}")
         else:
             st.write(f"No! {guess} is not in the word")
