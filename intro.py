@@ -42,13 +42,13 @@ def hangman():
         else:
             st.write(f"No! {guess} is not in the word")
 
-        display_word = " "
+        display_word = ""
 
         for character in word:
             if character in guessed:
                 display_word += character + ""
             else:
-                display_word += "_"
+                display_word += ""
 
         st.write("Word:", display_word)
 
