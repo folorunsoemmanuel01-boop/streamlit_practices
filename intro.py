@@ -14,34 +14,23 @@ import streamlit as st
 
 
 def hangman():
-    st.title("🎮 Hangman Game")
+    st.title("Hangman Game")
 
-    # Create the word
     if "word" not in st.session_state:
         words = ["python", "game", "school"]
         st.session_state["word"] = random.choice(words)
 
-    # Create guessed letters
     if "guessed" not in st.session_state:
         st.session_state["guessed"] = []
-
-    # Game status
-    if "game_over" not in st.session_state:
-        st.session_state["game_over"] = False
-
-    if "game_ended" not in st.session_state:
-        st.session_state["game_ended"] = False
 
     word = st.session_state["word"]
     guessed = st.session_state["guessed"]
 
-    # If player ended the game
-    if st.session_state["game_ended"]:
-        st.warning("🛑 Game Ended")
-        st.write("Thanks for playing! 👋")
-        st.stop()
-
     guess = st.text_input("Enter a character")
+
+    if guess.lower() == "done":
+       st.write(("Game stopped."))
+       st.stop()
 
     if guess.isalpha() and len(guess) == 1:
 
@@ -49,48 +38,34 @@ def hangman():
             guessed.append(guess)
 
         if guess in word:
-            st.success(f"✅ Yes! {guess} is in the word!")
+            st.write(f"The position is {word.find(guess)}")
         else:
-            st.error(f"❌ No! {guess} is not in the word.")
+            st.write(f"No! {guess} is not in the word")
 
-        # Display the word
         display_word = ""
 
         for character in word:
             if character in guessed:
-                display_word += character
+                display_word += character + ""
             else:
                 display_word += "_"
 
         st.write("Word:", display_word)
 
-        # Player wins
         if all(character in guessed for character in word):
-            st.success(f"🎉 You won! The word was **{word}**")
-            st.session_state["game_over"] = True
+            st.success(f"You won! The word was {word}")
+
+            if st.button("Play Again"):
+              words = ["python", "game", "school"]
+
+              st.session_state["word"] = random.choice(words)
+              st.session_state["guessed"] = []
+
+              st.rerun()
+
 
     elif guess:
-        st.warning("⚠️ Enter only ONE character.")
-
-    # Buttons
-    col1, col2 = st.columns(2)
-
-    with col1:
-        if st.button("🔄 Play Again"):
-
-            words = ["python", "game", "school"]
-
-            st.session_state["word"] = random.choice(words)
-            st.session_state["guessed"] = []
-            st.session_state["game_over"] = False
-
-            st.rerun()
-
-    with col2:
-        if st.button("🛑 End Game"):
-
-            st.session_state["game_ended"] = True
-            st.rerun()
+        st.write("Invalid character")
 
 
 hangman()
