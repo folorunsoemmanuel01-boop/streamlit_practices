@@ -55,7 +55,7 @@ def hangman():
         if all(character in guessed for character in word):
             st.success(f"You won! The word was {word}")
 
-           if st.button("Play Again"):
+            if st.button("Play Again"):
               words = ["python", "game", "school"]
 
               st.session_state["word"] = random.choice(words)
