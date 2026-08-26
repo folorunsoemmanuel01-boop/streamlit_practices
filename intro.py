@@ -64,7 +64,7 @@ def hangman():
               st.rerun()
 
            if st.button("Play Another Game"):
-               st.switch_page("Game 2.py")
+                st.switch_page("Game 2.py")
    
 
     elif guess:
