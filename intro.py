@@ -28,6 +28,10 @@ def hangman():
 
     guess = st.text_input("Enter a character")
 
+    if guess.lower() == "done":
+       st.write(("Game stopped.")
+       st.stop()
+
     if guess.isalpha() and len(guess) == 1:
 
         if guess not in guessed:
