@@ -16,17 +16,17 @@ import streamlit as st
 def hangman():
     st.title("Hangman Game")
 
-    difficulty = st.radio("Choose difficulty:",["Easy","Medium","Hard"])
+   difficulty = st.radio("Choose difficulty:", ["Easy", "Medium", "Hard"], horizotal=True)
 
-    if difficulty == "Easy":
-       st.write("You selected Easy")
-    elif diffculty == "Medium":
-       st.write("You selected Medium")
-    else: 
-       st.write("You selected Hard")
+   if difficulty == "Easy":
+      words = ["cat", "dog", "sun"]
+   elif difficulty == "Medium":
+      words = ["python","program", "saloon", "salmon"]
+   else:
+      words = ["algorithm", "programming", "language", "javascript"]
+      
 
     if "word" not in st.session_state:
-        words = ["python", "game", "school"]
         st.session_state["word"] = random.choice(words)
 
     if "guessed" not in st.session_state:
@@ -65,8 +65,6 @@ def hangman():
             st.success(f"You won! The word was {word}")
 
             if st.button("Play Again"):
-              words = ["python", "game", "school"]
-
               new_word = random.choice(words)
 
               while new_word == st.session_state["word"]:
