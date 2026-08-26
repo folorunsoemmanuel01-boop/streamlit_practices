@@ -30,7 +30,7 @@ def hangman():
     elif difficulty == "Medium":
       words = ["python","program", "saloon", "salmon"]
     else:
-      words = ["algorithm", "programming", "language", "javascript"]
+      words = ["algorithm", "programming", "language", "javascript", "aieee"]
       
 
     if "word" not in st.session_state:
