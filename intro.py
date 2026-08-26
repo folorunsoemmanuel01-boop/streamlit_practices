@@ -16,7 +16,12 @@ import streamlit as st
 def hangman():
     st.title("Hangman Game")
 
-    difficulty = st.radio("Choose difficulty:", ["Easy", "Medium", "Hard"], horizotal=True)
+    difficulty = st.radio(
+       "Choose difficulty:", 
+       options= ["Easy", "Medium", "Hard"], 
+       horizotal=True, 
+       key= "difficulty"
+    ) 
 
     if difficulty == "Easy":
       words = ["cat", "dog", "sun"]
