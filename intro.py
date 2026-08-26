@@ -58,7 +58,12 @@ def hangman():
             if st.button("Play Again"):
               words = ["python", "game", "school"]
 
-              st.session_state["word"] = random.choice(words)
+               new_word = random.choice(words)
+
+               while new_word == st.session_state["word"]:
+                   new_word = random.choice(words)
+
+              st.session_state["word"] = new_word
               st.session_state["guessed"] = []
 
               st.rerun()
