@@ -89,7 +89,7 @@ def hangman():
 
 hangman()
 
-for num in range(1,13):
+for number in range(1,13):
    st.write(f"\nMultiplication Table for {number}")
 
    for multiplier in range(1,16):
