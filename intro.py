@@ -19,12 +19,8 @@ def hangman():
 
     difficulty = st.radio(
        "Choose difficulty:", 
-       ["Select difficulty", "Easy", "Medium", "Hard"]
+       ["Easy", "Medium", "Hard"]
     ) 
-
-    if difficulty == "Select difficulty":
-       st.info("Please select dificulty.")
-       st.stop()
        
     if difficulty == "Easy":
       words = ["cat", "dog", "sun"]
