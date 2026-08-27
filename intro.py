@@ -8,43 +8,7 @@ def main():
 
 if __name__=="__main__":
    main()
-
-import streamlit as st
-
-st.title("Multiplication Table")
-
-start = st.number_input(
-    "Enter starting number:",
-    min_value=1,
-    step=1
-)
-
-end = st.number_input(
-    "Enter ending number:",
-    min_value=1,
-    step=1
-)
-
-multiple = st.number_input(
-    "Enter multiplication range:",
-    min_value=1,
-    step=1
-)
-
-if st.button("Generate Tables"):
-
-    if start > end:
-        st.error("Starting number cannot be greater than ending number.")
-
-    else:
-        for number in range(int(start), int(end) + 1):
-
-            st.subheader(f"Multiplication Table for {number}")
-
-            for multiplier in range(1, int(multiple) + 1):
-                st.write(
-                    f"{number} × {multiplier} = {number * multiplier}"
-                )
+   
 
 import random
 import streamlit as st
