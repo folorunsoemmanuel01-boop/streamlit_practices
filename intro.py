@@ -90,7 +90,7 @@ def hangman():
 hangman()
 
 for num in range(1,13):
-   st.write(f"\nMultiplication Table for {number}
+   st.write(f"\nMultiplication Table for {number}")
 
    for multiplier in range(1,16):
       st.write(f"{number} X {multiplier} = {number * multiplier}")
