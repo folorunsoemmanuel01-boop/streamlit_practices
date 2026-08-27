@@ -21,12 +21,22 @@ def hangman():
        "Choose difficulty:", 
        ["Easy", "Medium", "Hard"]
     ) 
+
+    difficulty = st.selectbox(
+       "Choose difficulty:",
+       ["Easy", "Medium", "Hard"]
+    )
        
     if difficulty == "Easy":
+      st.write("You selected Easy")
       words = ["cat", "dog", "sun"]
+       
     elif difficulty == "Medium":
+      st.write("You selected Medium")
       words = ["python","program", "saloon", "salmon"]
+       
     else:
+      st.write("You selected Hard")
       words = ["algorithm", "programming", "language", "javascript", "aieee"]
       
 
