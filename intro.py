@@ -30,15 +30,17 @@ def hangman():
     if difficulty == "Easy":
       st.write("You selected Easy")
       words = ["cat", "dog", "sun"]
+      attempts = 10
        
     elif difficulty == "Medium":
       st.write("You selected Medium")
       words = ["python","program", "saloon", "salmon"]
+      attempts = 7
        
     else:
       st.write("You selected Hard")
       words = ["algorithm", "programming", "language", "javascript", "aieee"]
-      
+      attempts = 5
 
     if "word" not in st.session_state:
         st.session_state["word"] = random.choice(words)
@@ -96,11 +98,11 @@ def hangman():
 
 hangman()
 
-for number in range(1,6):
-   st.write(f"\nMultiplication Table for {number}")
+# for number in range(1,6):
+#    st.write(f"\nMultiplication Table for {number}")
 
-   for multiplier in range(1,16):
-      st.write(f"{number} X {multiplier} = {number * multiplier}")
+#    for multiplier in range(1,16):
+#       st.write(f"{number} X {multiplier} = {number * multiplier}")
    
 
 # for i in range(1,11):
