@@ -17,10 +17,10 @@ import streamlit as st
 def hangman():
     st.title("Hangman Game")
 
-    difficulty = st.radio(
-       "Choose difficulty:", 
-       ["Easy", "Medium", "Hard"]
-    ) 
+    # difficulty = st.radio(
+    #    "Choose difficulty:", 
+    #    ["Easy", "Medium", "Hard"]
+    # ) 
 
     difficulty = st.selectbox(
        "Choose difficulty:",
