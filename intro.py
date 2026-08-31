@@ -52,7 +52,7 @@ def hangman():
         st.session_state["wrong_attempts"] = 0
 
     if "attempts" not in st.session_state:
-    st.session_state["attempts"] = max_attempts
+        st.session_state["attempts"] = max_attempts
 
     word = st.session_state["word"]
     guessed = st.session_state["guessed"]
