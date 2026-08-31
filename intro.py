@@ -96,7 +96,7 @@ def hangman():
                 new_word = random.choice(words)
 
                 while new_word == st.session_state["word"]:
-                new_word = random.choice(words)
+                    new_word = random.choice(words)
 
                 st.session_state["word"] = new_word
                 st.session_state["guessed"] = []
