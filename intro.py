@@ -310,7 +310,7 @@ def guessing_number():
 
                 st.rerun()
 
-          if st.session_state.attempts == 0:
+           if st.session_state.attempts == 0:
 
               st.error("You have 0 attempts left!")
 
