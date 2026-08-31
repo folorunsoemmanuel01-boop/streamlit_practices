@@ -51,6 +51,9 @@ def hangman():
     if "wrong_attempts" not in st.session_state:
         st.session_state["wrong_attempts"] = 0
 
+    if "attempts" not in st.session_state:
+    st.session_state["attempts"] = max_attempts
+
     word = st.session_state["word"]
     guessed = st.session_state["guessed"]
     wrong_attempts = st.session_state["wrong_attempts"]
@@ -75,7 +78,7 @@ def hangman():
             st.write(f"The position is {word.find(guess)}")
         else:
             st.write(f"No! {guess} is not in the word")
-            st.session_state["max_attempts"] -= 1
+            st.session_state["attempts"] -= 1
 
         display_word = ""
 
