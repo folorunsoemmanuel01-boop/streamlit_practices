@@ -232,6 +232,11 @@ import random
 import time
 import streamlit as st
 
+def main():
+
+    name = st.text_input("Enter your name:",key="main_name")
+
+    st.write(f"Hello, {name}")
 
 def guessing_number():
    
@@ -257,7 +262,7 @@ def guessing_number():
 
         st.write("WELCOME to GUESS THE NUMBER game")
 
-        name = st.text_input("Enter your name:")
+        name = st.text_input("Enter your name:",key="guessing_name")
 
         if st.button("Start Game"):
 
@@ -280,7 +285,8 @@ def guessing_number():
             "Enter a number:",
             min_value=1,
             max_value=20,
-            step=1
+            step=1,
+            key="number_guess"
         )
 
         if st.button("Guess"):
