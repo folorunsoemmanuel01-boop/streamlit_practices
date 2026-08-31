@@ -289,7 +289,7 @@ def guessing_number():
             key="number_guess"
         )
 
-        if st.button("Guess"):
+        if st.button("Guess", key="guess_button"):
 
             if guessing_number > st.session_state.randomNumber:
 
@@ -307,9 +307,11 @@ def guessing_number():
 
                 st.success("You got the number!")
 
-                st.session_state.score_sheet[st.session_state.name] = "completed"
+                st.session_state.score_sheet[ 
+                    st.session_state.name
+                ] = "completed"
 
-                st.write("Score Sheet:")
+                
                 st.write("st.session_state.score_sheet")
 
                 st.session_state.play = False
