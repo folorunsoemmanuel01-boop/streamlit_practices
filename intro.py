@@ -92,17 +92,17 @@ def hangman():
             st.success(f"You won! The word was {word}")
 
             if st.button("Play Again"):
-              new_word = random.choice(words)
 
-              while new_word == st.session_state["word"]:
-                   new_word = random.choice(words)
+                new_word = random.choice(words)
 
-              st.session_state["word"] = new_word
-              st.session_state["guessed"] = []
-               
-              st.session_state["attempts"] = max_attempts
+                while new_word == st.session_state["word"]:
+                new_word = random.choice(words)
 
-              st.rerun()
+                st.session_state["word"] = new_word
+                st.session_state["guessed"] = []
+                st.session_state["attempts"] = max_attempts
+            
+                st.rerun()
  
         elif st.session_state["attempts"] <= 0:
            
