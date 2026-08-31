@@ -275,7 +275,7 @@ def guessing_number():
 
     if st.session_state.play:
 
-        st.ssuccess(f"Hola!, {st.session_state.name}!")
+        st.success(f"Hola!, {st.session_state.name}!")
 
         st.write(
             f"Attempts remaining: **{st.session_state.attempts}**"
