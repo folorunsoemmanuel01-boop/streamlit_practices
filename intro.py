@@ -30,17 +30,17 @@ def hangman():
     if difficulty == "Easy":
       st.write("You selected Easy")
       words = ["cat", "dog", "sun"]
-      attempts = 10
+      max_attempts = 10
        
     elif difficulty == "Medium":
       st.write("You selected Medium")
       words = ["python","program", "saloon", "salmon"]
-      attempts = 7
+      max_attempts = 7
        
     else:
       st.write("You selected Hard")
       words = ["algorithm", "programming", "language", "javascript", "aieee"]
-      attempts = 5
+      max_attempts = 5
 
     if "word" not in st.session_state:
         st.session_state["word"] = random.choice(words)
@@ -48,8 +48,14 @@ def hangman():
     if "guessed" not in st.session_state:
         st.session_state["guessed"] = []
 
+    if "wrong_attempts" not in st.session_state:
+        st.session_state["wrong_attempts"] = 0
+
     word = st.session_state["word"]
     guessed = st.session_state["guessed"]
+    wrong_attempts = st.session_state["wrong_attempts"]
+
+    st.write(f"Attempts left: {max_attempts - wrong_attempts}")
 
     guess = st.text_input("Enter a character")
 
@@ -59,6 +65,9 @@ def hangman():
 
     if guess.isalpha() and len(guess) == 1:
 
+        if guess in guessed:
+           st.warning("You've guessed that letter")
+           
         if guess not in guessed:
             guessed.append(guess)
 
@@ -66,6 +75,7 @@ def hangman():
             st.write(f"The position is {word.find(guess)}")
         else:
             st.write(f"No! {guess} is not in the word")
+            st.session_state["max_attempts"] += 1
 
         display_word = ""
 
@@ -88,8 +98,24 @@ def hangman():
 
               st.session_state["word"] = new_word
               st.session_state["guessed"] = []
+              st.session_state["wrong_attempts"] = 0
 
               st.rerun()
+ 
+        elif st.session_state["wrong_attempts"] >= max_attempts:
+            st.error(f"GAME OVER! The word was {word}")
+
+            if st.button("Play Again"):
+               new_word = random.choice(words)
+
+            while new_word == st.session_state["word"]:
+                new_word = random.choice(words)
+
+            st.session_state["word"] = new_word
+            st.session_state["guessed"] = []
+            st.session_state["wrong_attempts"] = 0
+
+            st.rerun()
 
 
     elif guess:
