@@ -75,7 +75,7 @@ def hangman():
             st.write(f"The position is {word.find(guess)}")
         else:
             st.write(f"No! {guess} is not in the word")
-            st.session_state["max_attempts"] += 1
+            st.session_state["max_attempts"] -= 1
 
         display_word = ""
 
