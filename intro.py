@@ -322,7 +322,7 @@ def guessing_number():
 
               st.session_state.score_sheet[st.session_state.name] = "failed"
 
-              st.write("Score Sheet:")
+              
               st.write(st.session_state.score_sheet)
 
               st.session_state.play = False
