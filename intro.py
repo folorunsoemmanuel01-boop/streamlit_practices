@@ -330,7 +330,7 @@ def guessing_number():
 
            st.write(
                f"Thank you 4 playing, "
-               f"{st.session_state.name}!
+               f"{st.session_state.name}!"
            )
 
            st.rerun()
