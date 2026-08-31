@@ -249,7 +249,7 @@ def guessing_number():
     if "play" not in st.session_state:
         st.session_state.play = False
 
-    if "name" not in session_state:
+    if "name" not in st.session_state:
         st.session_state.name = ""
 
 
