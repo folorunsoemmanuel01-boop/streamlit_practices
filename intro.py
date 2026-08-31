@@ -307,7 +307,7 @@ def guessing_number():
 
                 st.success("You got the number!")
 
-                st.session_state.scoresheet[st.session_state.name] = "completed"
+                st.session_state.score_sheet[st.session_state.name] = "completed"
 
                 st.write("Score Sheet:")
                 st.write("st.session_state.score_sheet")
