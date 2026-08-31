@@ -323,7 +323,7 @@ def guessing_number():
 
               st.rerun()
 
-       if st.button("END GAME"):
+     if st.button("END GAME"):
 
            st.session_state.play = False
 
