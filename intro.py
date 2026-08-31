@@ -335,7 +335,7 @@ def guessing_number():
 
            st.rerun()
 
-   if st.session_state.score_sheet:
+    if st.session_state.score_sheet:
 
        st.subheader("Score Sheet")
 
