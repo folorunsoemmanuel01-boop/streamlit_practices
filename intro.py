@@ -48,17 +48,14 @@ def hangman():
     if "guessed" not in st.session_state:
         st.session_state["guessed"] = []
 
-    if "wrong_attempts" not in st.session_state:
-        st.session_state["wrong_attempts"] = 0
-
     if "attempts" not in st.session_state:
         st.session_state["attempts"] = max_attempts
 
     word = st.session_state["word"]
     guessed = st.session_state["guessed"]
-    wrong_attempts = st.session_state["wrong_attempts"]
+    attempts = st.session_state["attempts"]
 
-    st.write(f"Attempts left: {max_attempts - wrong_attempts}")
+    st.write(f"Attempts left: {attempts}")
 
     guess = st.text_input("Enter a character")
 
@@ -78,6 +75,7 @@ def hangman():
             st.write(f"The position is {word.find(guess)}")
         else:
             st.write(f"No! {guess} is not in the word")
+           
             st.session_state["attempts"] -= 1
 
         display_word = ""
@@ -101,14 +99,17 @@ def hangman():
 
               st.session_state["word"] = new_word
               st.session_state["guessed"] = []
-              st.session_state["wrong_attempts"] = 0
+               
+              st.session_state["attempts"] = max_attempts
 
               st.rerun()
  
-        elif st.session_state["wrong_attempts"] >= max_attempts:
+        elif st.session_state["attempts"] <= 0:
+           
             st.error(f"GAME OVER! The word was {word}")
 
             if st.button("Play Again"):
+               
                new_word = random.choice(words)
 
             while new_word == st.session_state["word"]:
@@ -116,7 +117,8 @@ def hangman():
 
             st.session_state["word"] = new_word
             st.session_state["guessed"] = []
-            st.session_state["wrong_attempts"] = 0
+           
+            st.session_state["attempts"] = max_attempts
 
             st.rerun()
 
