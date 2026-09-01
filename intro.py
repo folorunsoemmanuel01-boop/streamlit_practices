@@ -27,7 +27,7 @@ def hangman():
     if difficulty == "Easy":
         st.write("You selected Easy")
         words = ["cat", "dog", "sun"]
-        max_attempts = 10
+        max_attempts = 5
 
     elif difficulty == "Medium":
         st.write("You selected Medium")
@@ -36,8 +36,8 @@ def hangman():
 
     else:
         st.write("You selected Hard")
-        words = ["algorithm", "programming", "language", "javascript", "aieee"]
-        max_attempts = 5
+        words = ["algorithm", "programming", "language", "javascript", "aieee","onomatopoeia"]
+        max_attempts = 10
 
     # RESET GAME WHEN DIFFICULTY CHANGES
     if "difficulty" not in st.session_state:
