@@ -18,14 +18,14 @@ def usersInput():
     st.title("Enter Numbers")
 
     if "userList" not in st.session_state:
-        st.session_state.userList = []
+        st.session_state["userList"] = []
 
     userInput = st.text_input("Enter a number:")
 
     if st.button("Add Number"):
 
         if userInput.isdigit():
-            st.session_state.userList.append(int(userInput))
+            st.session_state[userList].append(int(userInput))
             st.success("Number added!")
 
         elif userInput == "":
