@@ -36,7 +36,7 @@ def hangman():
         ["Easy", "Medium", "Hard"]
     )
 
-    # CHOOSE WORDS AND ATTEMPTS
+    # CHOOSE WORDS AND ATTEMPTS 
     if difficulty == "Easy":
         st.write("You selected Easy")
         words = ["cat", "dog", "sun"]
