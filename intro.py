@@ -8,6 +8,25 @@ def main():
 
 if __name__=="__main__":
    main()
+
+
+def usersInput():
+
+   userList = []
+
+   while True:
+      userInput = st.text_input("Enter a number")
+      if userInput == "done":
+          st.write(userList)
+          break
+      elif userInput.isdigit():
+          userInput.append(userInput)
+      elif userInput == "":
+          st.write("Invalid Character")
+      else:
+          st.write("Invalid Character")
+
+usersInput()
    
 
 import random
