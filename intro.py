@@ -126,7 +126,7 @@ def hangman():
 
     # CHECK WIN
     if all(character in guessed for character in word):
-        st.success(f"🎉 You won! The word was **{word}**")
+        st.success(f"You won! The word was **{word}**")
 
         if st.button("Play Again"):
             new_word = random.choice(words)
@@ -143,7 +143,7 @@ def hangman():
 
     # CHECK GAME OVER
     elif st.session_state["attempts"] <= 0:
-        st.error(f"💀 GAME OVER! The word was **{word}**")
+        st.error(f"GAME OVER! The word was **{word}**")
 
         if st.button("Play Again"):
             new_word = random.choice(words)
