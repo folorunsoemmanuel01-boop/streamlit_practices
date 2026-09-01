@@ -129,11 +129,11 @@ def hangman():
 
 hangman()
 
-# for number in range(1,6):
-#    st.write(f"\nMultiplication Table for {number}")
+for number in range(1,6):
+   st.write(f"\nMultiplication Table for {number}")
 
-#    for multiplier in range(1,16):
-#       st.write(f"{number} X {multiplier} = {number * multiplier}")
+   for multiplier in range(1,16):
+      st.write(f"{number} X {multiplier} = {number * multiplier}")
    
 
 # for i in range(1,11):
