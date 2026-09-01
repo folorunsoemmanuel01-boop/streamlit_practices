@@ -31,9 +31,9 @@ def usersInput():
           else:
               st.error("Invalid Character")
 
-    if st.button("Done"):
-        st.write("Your Final List:")
-        st.write(st.session_state.userList)
+     if st.button("Done"):
+         st.write("Your Final List:")
+         st.write(st.session_state.userList)
 
 usersInput()
    
