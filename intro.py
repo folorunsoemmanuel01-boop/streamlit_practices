@@ -15,7 +15,7 @@ def usersInput():
    st.title("Enter Numbers")
 
    if "userList" not in st.session_state:
-      st.session_state = []
+      st.session_state.userList = []
       
       userInput = st.text_input("Enter a number:")
       
