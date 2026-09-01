@@ -36,7 +36,7 @@ def hangman():
 
     else:
         st.write("You selected Hard")
-        words = ["algorithm", "programming", "language", "javascript", "aieee","onomatopoeia"]
+        words = ["algorithm", "programming", "language", "javascript","onomatopoeia"]
         max_attempts = 10
 
     # RESET GAME WHEN DIFFICULTY CHANGES
