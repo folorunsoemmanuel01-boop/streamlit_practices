@@ -312,7 +312,7 @@ def guessing_number():
                 ] = "completed"
 
                 
-                st.write("st.session_state.score_sheet")
+                st.write(st.session_state.score_sheet)
 
                 st.session_state.play = False
 
@@ -347,7 +347,7 @@ def guessing_number():
 
        st.subheader("Score Sheet")
 
-       st.write("st.session_state.score_sheet")
+       st.write(st.session_state.score_sheet)
 
 
 guessing_number()
