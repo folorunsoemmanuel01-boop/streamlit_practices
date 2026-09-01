@@ -19,7 +19,7 @@ def usersInput():
       
       userInput = st.text_input("Enter a number:")
       
-    if st.button("Add Number"):
+     if st.button("Add Number"):
          
           if userInput.isdigit():
               st.session_state.userInput.append(int(userInput))
