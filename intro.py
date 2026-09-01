@@ -40,124 +40,142 @@ if __name__=="__main__":
 # usersInput()
    
 
-import random
-import streamlit as st
+# import random
+# import streamlit as st
 
 
-def hangman():
-    st.title("Hangman Game")
+# def hangman():
+#     st.title("Hangman Game")
 
-    # difficulty = st.radio(
-    #    "Choose difficulty:", 
-    #    ["Easy", "Medium", "Hard"]
-    # ) 
+#     # difficulty = st.radio(
+#     #    "Choose difficulty:", 
+#     #    ["Easy", "Medium", "Hard"]
+#     # ) 
 
-    difficulty = st.selectbox(
-       "Choose difficulty:",
-       ["Easy", "Medium", "Hard"]
-    )
+#     difficulty = st.selectbox(
+#        "Choose difficulty:",
+#        ["Easy", "Medium", "Hard"]
+#     )
+
+#    #CHOOSE WORDS AND ATTEMPTS
+#     if difficulty == "Easy":
+#       st.write("You selected Easy")
+#       words = ["cat", "dog", "sun"]
+#       max_attempts = 10
        
-    if difficulty == "Easy":
-      st.write("You selected Easy")
-      words = ["cat", "dog", "sun"]
-      max_attempts = 10
+#     elif difficulty == "Medium":
+#       st.write("You selected Medium")
+#       words = ["python","program", "saloon", "salmon"]
+#       max_attempts = 7
        
-    elif difficulty == "Medium":
-      st.write("You selected Medium")
-      words = ["python","program", "saloon", "salmon"]
-      max_attempts = 7
-       
-    else:
-      st.write("You selected Hard")
-      words = ["algorithm", "programming", "language", "javascript", "aieee"]
-      max_attempts = 5
+#     else:
+#       st.write("You selected Hard")
+#       words = ["algorithm", "programming", "language", "javascript", "aieee"]
+#       max_attempts = 5
 
-    if "word" not in st.session_state:
-        st.session_state["word"] = random.choice(words)
+#    # RESET GAME WHEN DIFFIULTY CHANGES
+#     if "difficulty" not in st.session_state:
+#         st.session_state["difficulty"] = difficulty
 
-    if "guessed" not in st.session_state:
-        st.session_state["guessed"] = []
+#     if st.session_state["difficulty"] != difficulty:
+#         st.session_state["difficulty"] = difficulty
+#         st.session_state["word"] = random.choice(words)
+#         st.session_state["guessed"] = []
+#         st.session_state["attempts"] = max_attempts
 
-    if "attempts" not in st.session_state:
-        st.session_state["attempts"] = max_attempts
+#    #START GAME
 
-    word = st.session_state["word"]
-    guessed = st.session_state["guessed"]
-    attempts = st.session_state["attempts"]
+#     if "word" not in st.session_state:
+#         st.session_state["word"] = random.choice(words)
 
-    st.write(f"Attempts left: {attempts}")
+#     if "guessed" not in st.session_state:
+#         st.session_state["guessed"] = []
 
-    guess = st.text_input("Enter a character")
+#     if "attempts" not in st.session_state:
+#         st.session_state["attempts"] = max_attempts
 
-    if guess.lower() == "done":
-       st.write(("Game stopped."))
-       st.stop()
+#     word = st.session_state["word"]
+#     guessed = st.session_state["guessed"]
+#     attempts = st.session_state["attempts"]
 
-    if guess.isalpha() and len(guess) == 1:
+#     st.write(f"Attempts left: {attempts}")
 
-        if guess in guessed:
-           st.warning("You've guessed that letter")
+#    #DISPLAY  
+#    display_word = ""
+
+#     for character in word:
+
+#     guess = st.text_input("Enter a character")
+
+#     if guess.lower() == "done":
+#        st.write(("Game stopped."))
+#        st.stop()
+
+#     if guess.isalpha() and len(guess) == 1:
+
+#         if guess in guessed:
+#            st.warning("You've guessed that letter")
            
-        if guess not in guessed:
-            guessed.append(guess)
+#         if guess not in guessed:
+#             guessed.append(guess)
 
-        if guess in word:
-            st.write(f"The position is {word.find(guess)}")
-        else:
-            st.write(f"No! {guess} is not in the word")
+#         if guess in word:
+#             st.write(f"The position is {word.find(guess)}")
+#         else:
+#             st.write(f"No! {guess} is not in the word")
            
-            st.session_state["attempts"] -= 1
+#             st.session_state["attempts"] -= 1
 
-        display_word = ""
+#         display_word = ""
 
-        for character in word:
-            if character in guessed:
-                display_word += character + ""
-            else:
-                display_word += "_"
+#         for character in word:
+#             if character in guessed:
+#                 display_word += character + ""
+#             else:
+#                 display_word += "_"
 
-        st.write("Word:", display_word)
+#         st.write("Word:", display_word)
 
-        if all(character in guessed for character in word):
-            st.success(f"You won! The word was {word}")
+#         if all(character in guessed for character in word):
+#             st.success(f"You won! The word was {word}")
 
-            if st.button("Play Again"):
+#             if st.button("Play Again"):
 
-                new_word = random.choice(words)
+#                 new_word = random.choice(words)
 
-                while new_word == st.session_state["word"]:
-                    new_word = random.choice(words)
+#                 while new_word == st.session_state["word"]:
+#                     new_word = random.choice(words)
 
-                st.session_state["word"] = new_word
-                st.session_state["guessed"] = []
-                st.session_state["attempts"] = max_attempts
+#                 st.session_state["word"] = new_word
+#                 st.session_state["guessed"] = []
+#                 st.session_state["attempts"] = max_attempts
             
-                st.rerun()
+#                 st.rerun()
  
-        elif st.session_state["attempts"] <= 0:
+#         elif st.session_state["attempts"] <= 0:
            
-            st.error(f"GAME OVER! The word was {word}")
+#             st.error(f"GAME OVER! The word was {word}")
 
-            if st.button("Play Again"):
+#             if st.button("Play Again"):
                
-               new_word = random.choice(words)
+#                new_word = random.choice(words)
 
-            while new_word == st.session_state["word"]:
-                new_word = random.choice(words)
+#             while new_word == st.session_state["word"]:
+#                 new_word = random.choice(words)
 
-            st.session_state["word"] = new_word
-            st.session_state["guessed"] = []
+#             st.session_state["word"] = new_word
+#             st.session_state["guessed"] = []
            
-            st.session_state["attempts"] = max_attempts
+#             st.session_state["attempts"] = max_attempts
 
-            st.rerun()
-
-
-    elif guess:
-        st.write("Invalid character")
+#             st.rerun()
 
 
-hangman()
+#     elif guess:
+#         st.write("Invalid character")
+
+
+# hangman()
 
 # for number in range(1,6):
 #    st.write(f"\nMultiplication Table for {number}")
