@@ -277,125 +277,140 @@ if __name__=="__main__":
 
 
 import random
-import time
 import streamlit as st
 
-def main():
-
-    name = st.text_input("Enter your name:",key="main_name")
-
-    st.write(f"Hello, {name}")
 
 def guessing_number():
-   
+
     st.title("GUESS THE NUMBER GAME")
 
-    if "randomNumber" not in st.session_state:
-        st.session_state["randomNumber"] = random.randint(1,20)
+    # Get player's name
+    name = st.text_input("Enter your name:", key="guess_name")
 
+    if name:
+        st.write(f"Hola, {name}!")
+
+    # Create the secret number
+    if "target_number" not in st.session_state:
+        st.session_state["target_number"] = random.randint(1, 20)
+
+    # Create attempts
     if "attempts" not in st.session_state:
         st.session_state["attempts"] = 10
 
+    # Create score sheet
     if "score_sheet" not in st.session_state:
         st.session_state["score_sheet"] = {}
 
-    if "play" not in st.session_state:
-        st.session_state["play"] = False
+    # Create game status
+    if "game_over" not in st.session_state:
+        st.session_state["game_over"] = False
 
-    if "name" not in st.session_state:
-        st.session_state.name = ""
+    # If game has ended
+    if st.session_state["game_over"]:
+        st.write("Game has ended.")
 
+        if st.button("Start New Game"):
+            st.session_state["target_number"] = random.randint(1, 20)
+            st.session_state["attempts"] = 10
+            st.session_state["game_over"] = False
+            st.rerun()
 
-    if not st.session_state.play:
+        return
 
-        st.write("WELCOME to GUESS THE NUMBER game")
+    # Get current values
+    target_number = st.session_state["target_number"]
+    attempts = st.session_state["attempts"]
 
-        name = st.text_input("Enter your name:",key="guessing_name")
+    st.write(f"Attempts left: {attempts}")
 
-        if st.button("Start Game"):
+    # User enters guess
+    guess = st.number_input(
+        "Guess a number between 1 and 20:",
+        min_value=1,
+        max_value=20,
+        step=1,
+        key="user_guess"
+    )
+
+    # Buttons
+    col1, col2 = st.columns(2)
+
+    with col1:
+        guess_button = st.button("Guess")
+
+    with col2:
+        end_button = st.button("END GAME")
+
+    # End game
+    if end_button:
+        st.session_state["game_over"] = True
+        st.write("Game stopped.")
+        st.rerun()
+
+    # Guess
+    if guess_button:
+
+        if guess == target_number:
+
+            st.success(
+                f"🎉 Correct, {name}! The number was {target_number}."
+            )
+
+            # Calculate score
+            score = attempts * 10
 
             if name:
-                st.session_state.name = name
-                st.session_state.play = True
+                st.session_state["score_sheet"][name] = score
 
-            else:
-               st.warning("Please enter your name.")
+            st.write(f"Your score: {score}")
 
-    if st.session_state.play:
+            # Play again
+            if st.button("Play Again"):
 
-        st.success(f"Hola!, {st.session_state.name}!")
+                st.session_state["target_number"] = random.randint(1, 20)
 
-        st.write(
-            f"Attempts remaining: **{st.session_state.attempts}**"
-        )
+                # Make sure new number is different
+                while st.session_state["target_number"] == target_number:
+                    st.session_state["target_number"] = random.randint(1, 20)
 
-        guessing_number = st.number_input(
-            "Enter a number:",
-            min_value=1,
-            max_value=20,
-            step=1,
-            key="number_guess"
-        )
-
-        if st.button("Guess", key="guess_button"):
-
-            if guessing_number > st.session_state.randomNumber:
-
-                st.session_state.attempts -= 1
-
-                st.warning("Too High!")
-
-            elif guessing_number < st.session_state.randomNumber:
-
-                st.session_state.attempts -= 1
-
-                st.warning("Too Low!")
-
-            else:
-
-                st.success("You got the number!")
-
-                st.session_state.score_sheet[ 
-                    st.session_state.name
-                ] = "completed"
-
-                
-                st.write(st.session_state.score_sheet)
-
-                st.session_state.play = False
-
+                st.session_state["attempts"] = 10
                 st.rerun()
 
-            if st.session_state.attempts == 0:
+        else:
 
-              st.error("You have 0 attempts left!")
+            st.session_state["attempts"] -= 1
 
-              st.session_state.score_sheet[st.session_state.name] = "failed"
+            if guess < target_number:
+                st.warning("Too low! Try again.")
 
-              
-              st.write(st.session_state.score_sheet)
+            else:
+                st.warning("Too high! Try again.")
 
-              st.session_state.play = False
+            # Check if attempts are finished
+            if st.session_state["attempts"] <= 0:
 
-              st.rerun()
-               
+                st.error(
+                    f"GAME OVER! The number was {target_number}."
+                )
 
-        if st.button("END GAME"):
+                if st.button("Play Again"):
 
-           st.session_state.play = False
+                    st.session_state["target_number"] = random.randint(1, 20)
 
-           st.write(
-               f"Thank you 4 playing, "
-               f"{st.session_state.name}!"
-           )
+                    while st.session_state["target_number"] == target_number:
+                        st.session_state["target_number"] = random.randint(1, 20)
 
-           st.rerun()
+                    st.session_state["attempts"] = 10
+                    st.rerun()
 
-    if st.session_state.score_sheet:
+    # Score sheet
+    if st.session_state["score_sheet"]:
 
-       st.subheader("Score Sheet")
+        st.subheader("Score Sheet")
 
-       st.write(st.session_state.score_sheet)
+        for player, score in st.session_state["score_sheet"].items():
+            st.write(f"{player}: {score}")
 
 
 guessing_number()
