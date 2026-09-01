@@ -12,19 +12,28 @@ if __name__=="__main__":
 
 def usersInput():
 
-   userList = []
+   st.title("Enter Numbers")
 
-   while True:
+   if "userList" not in st.session_state:
+      st.session_state = []
+      
       userInput = st.text_input("Enter a number")
-      if userInput == "done":
-          st.write(userList)
-          break
-      elif userInput.isdigit():
-          userInput.append(userInput)
-      elif userInput == "":
-          st.write("Invalid Character")
-      else:
-          st.write("Invalid Character")
+      
+      if st.button("Add Number"):
+         
+          if userInput.isdigit():
+              st.session_state.userInput.append(int(userInput))
+              st.success("Number aded!")
+             
+          elif userInput == "":
+              st.warning("Pls enter a number")
+            
+          else:
+              st.error("Invalid Character")
+
+    if st.button("Done"):
+        st.write("Your Final List:")
+        st.write(st.session_state.userList)
 
 usersInput()
    
