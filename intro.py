@@ -11,6 +11,9 @@ if __name__=="__main__":
 
 
 
+import streamlit as st
+
+
 def usersInput():
 
     st.title("Enter Numbers")
@@ -23,7 +26,7 @@ def usersInput():
     if st.button("Add Number"):
 
         if userInput.isdigit():
-            st.session_state[userList].append(int(userInput))
+            st.session_state["userList"].append(int(userInput))
             st.success("Number added!")
 
         elif userInput == "":
@@ -34,8 +37,7 @@ def usersInput():
 
     if st.button("Done"):
         st.write("Your Final List:")
-        st.write(st.session_state.userList)
+        st.write(st.session_state["userList"])
 
 
 usersInput()
-
