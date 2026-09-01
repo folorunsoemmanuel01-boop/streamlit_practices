@@ -262,7 +262,7 @@ def guessing_number():
 
         st.write("WELCOME to GUESS THE NUMBER game")
 
-        name = st.text_input("Enter your name:",key="guessing_name")
+        name = st.text_input("Enter your name:",key="guessing_name").strip()
 
         if st.button("Start Game"):
 
