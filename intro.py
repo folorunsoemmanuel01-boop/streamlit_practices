@@ -291,7 +291,7 @@ def guessing_number():
     st.title("GUESS THE NUMBER GAME")
 
     if "randomNumber" not in st.session_state:
-        st.session_state[randomNumber] = random.randint(1,20)
+        st.session_state.randomNumber = random.randint(1,20)
 
     if "attempts" not in st.session_state:
         st.session_state.attempts = 10
