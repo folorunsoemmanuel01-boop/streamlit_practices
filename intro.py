@@ -22,7 +22,7 @@ def usersInput():
       if st.button("Add Number"):
          
           if userInput.isdigit():
-              st.session_state.userInput.append(int(userInput))
+              st.session_state.userList.append(int(userInput))
               st.success("Number aded!")
              
           elif userInput == "":
