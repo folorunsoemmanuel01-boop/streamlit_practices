@@ -1,16 +1,7 @@
-import streamlit as st
-
-def main():
-   st.title("Introduction to Streamlit")
-
-   name = st.text_input("Enter your name:")
-   st.write(f"Hello,{name}")
-
-if __name__=="__main__":
-   main()
-
 import random
 import streamlit as st
+
+
 def hangman():
     st.title("Hangman Game")
 
@@ -20,7 +11,7 @@ def hangman():
         ["Easy", "Medium", "Hard"]
     )
 
-    # CHOOSE WORDS AND ATTEMPTS 
+    # CHOOSE WORDS AND ATTEMPTS
     if difficulty == "Easy":
         st.write("You selected Easy")
         words = ["cat", "dog", "sun"]
@@ -33,18 +24,33 @@ def hangman():
 
     else:
         st.write("You selected Hard")
-        words = ["algorithm", "programming", "language", "javascript","onomatopoeia"]
+        words = [
+            "algorithm",
+            "programming",
+            "language",
+            "javascript",
+            "onomatopoeia"
+        ]
         max_attempts = 10
 
-    # RESET GAME WHEN DIFFICULTY CHANGES
+    # INITIALIZE DIFFICULTY
     if "difficulty" not in st.session_state:
         st.session_state["difficulty"] = difficulty
 
+    # RESET WHEN DIFFICULTY CHANGES
     if st.session_state["difficulty"] != difficulty:
+
         st.session_state["difficulty"] = difficulty
         st.session_state["word"] = random.choice(words)
         st.session_state["guessed"] = []
         st.session_state["attempts"] = max_attempts
+
+        # Change input key
+        st.session_state["input_number"] = (
+            st.session_state.get("input_number", 0) + 1
+        )
+
+        st.rerun()
 
     # START GAME
     if "word" not in st.session_state:
@@ -56,6 +62,38 @@ def hangman():
     if "attempts" not in st.session_state:
         st.session_state["attempts"] = max_attempts
 
+    if "input_number" not in st.session_state:
+        st.session_state["input_number"] = 0
+
+    # PLAY AGAIN FUNCTION
+    def play_again():
+
+        # Choose a new word
+        new_word = random.choice(words)
+
+        while (
+            new_word == st.session_state["word"]
+            and len(words) > 1
+        ):
+            new_word = random.choice(words)
+
+        # Reset word
+        st.session_state["word"] = new_word
+
+        # Reset guessed letters
+        st.session_state["guessed"] = []
+
+        # Reset attempts according to difficulty
+        st.session_state["attempts"] = max_attempts
+
+        # CHANGE INPUT KEY
+        # This automatically clears the old text input
+        st.session_state["input_number"] += 1
+
+        # Immediately restart
+        st.rerun()
+
+    # GET CURRENT GAME DATA
     word = st.session_state["word"]
     guessed = st.session_state["guessed"]
     attempts = st.session_state["attempts"]
@@ -66,6 +104,7 @@ def hangman():
     display_word = ""
 
     for character in word:
+
         if character in guessed:
             display_word += character
         else:
@@ -76,7 +115,7 @@ def hangman():
     # INPUT
     guess = st.text_input(
         "Enter a character:",
-        key="guess_input"
+        key=f"guess_input_{st.session_state['input_number']}"
     )
 
     # STOP GAME
@@ -86,30 +125,39 @@ def hangman():
 
     # PROCESS GUESS
     if guess:
+
         if guess.isalpha() and len(guess) == 1:
 
             guess = guess.lower()
 
             if guess in guessed:
-                st.warning("You've already guessed that letter.")
+
+                st.warning(
+                    "You've already guessed that letter."
+                )
 
             else:
+
                 guessed.append(guess)
 
                 if guess in word:
+
                     st.success(
                         f"Correct! '{guess}' is in the word."
                     )
 
-                    # Show position
                     positions = [
-                        i for i, character in enumerate(word)
+                        i
+                        for i, character in enumerate(word)
                         if character == guess
                     ]
 
-                    st.write(f"Position(s): {positions}")
+                    st.write(
+                        f"Position(s): {positions}"
+                    )
 
                 else:
+
                     st.error(
                         f"No! '{guess}' is not in the word."
                     )
@@ -119,43 +167,30 @@ def hangman():
                 st.rerun()
 
         else:
-            st.warning("Please enter ONE alphabet character.")
+
+            st.warning(
+                "Please enter ONE alphabet character."
+            )
 
     # CHECK WIN
     if all(character in guessed for character in word):
-        st.success(f"You won! The word was **{word}**")
+
+        st.success(
+            f"You won! The word was **{word}**"
+        )
 
         if st.button("Play Again"):
-            new_word = random.choice(words)
-
-            while new_word == st.session_state["word"] and len(words) > 1:
-                new_word = random.choice(words)
-
-            st.session_state["word"] = new_word
-            st.session_state["guessed"] = []
-            st.session_state["attempts"] = max_attempts
-            st.session_state["guess_input"] = ""
-
-            st.rerun()
+            play_again()
 
     # CHECK GAME OVER
     elif st.session_state["attempts"] <= 0:
-        st.error(f"GAME OVER! The word was **{word}**")
+
+        st.error(
+            f"GAME OVER! The word was **{word}**"
+        )
 
         if st.button("Play Again"):
-            new_word = random.choice(words)
-
-            while new_word == st.session_state["word"] and len(words) > 1:
-                new_word = random.choice(words)
-
-            st.session_state["word"] = new_word
-            st.session_state["guessed"] = []
-            st.session_state["attempts"] = max_attempts
-            st.session_state["guess_input"] = ""
-
-            st.rerun()
+            play_again()
 
 
-hangman() 
-
-
+hangman()
