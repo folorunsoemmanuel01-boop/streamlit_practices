@@ -9,6 +9,8 @@ def main():
 if __name__=="__main__":
    main()
 
+import random
+import streamlit as st
 def hangman():
     st.title("Hangman Game")
 
