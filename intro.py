@@ -156,4 +156,4 @@ def hangman():
 
 hangman() 
 
-in dis code block i want play again to reset attempts back to 10 and work without any delay
+
