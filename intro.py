@@ -48,6 +48,7 @@ def hangman():
         st.session_state["word"] = random.choice(words)
         st.session_state["guessed"] = []
         st.session_state["attempts"] = max_attempts
+        st.session_state["guess_input"] = ""
 
     # START GAME
     if "word" not in st.session_state:
@@ -58,6 +59,25 @@ def hangman():
 
     if "attempts" not in st.session_state:
         st.session_state["attempts"] = max_attempts
+
+    def play_again():
+
+        new_word = random.choice(words)
+
+        while(
+            new_word == st.session_state["word"]
+            and len(words) > 1
+        ):
+            new_word = random.choice(words)
+
+    st.session_state["word"] = new_word
+    st.session_state["guessed"] = []
+
+    st.session_state["attempts"] = max_attempts
+
+    st.session_state["guess_input"] = ""
+
+    st.rerun()
 
     word = st.session_state["word"]
     guessed = st.session_state["guessed"]
@@ -143,24 +163,17 @@ def hangman():
 
     # CHECK GAME OVER
     elif st.session_state["attempts"] <= 0:
+       
         st.error(f"GAME OVER! The word was **{word}**")
 
         if st.button("Play Again"):
-            new_word = random.choice(words)
-
-            while new_word == st.session_state["word"] and len(words) > 1:
-                new_word = random.choice(words)
-
-            st.session_state["word"] = new_word
-            st.session_state["guessed"] = []
-            st.session_state["attempts"] = max_attempts
-            st.session_state["guess_input"] = ""
-
-            st.rerun()
+             play_again()
 
 
 hangman()
 
-  
+# for keys in st.sesion_state.keys():
+#    del st.session_state[key]
+# st.rerun()
 
 
