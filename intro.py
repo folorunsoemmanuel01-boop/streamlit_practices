@@ -194,3 +194,21 @@ def hangman():
 
 
 hangman()
+
+
+import streamlit as st
+
+st.title("Choose Your Hobbies")
+
+football = st.checkbox("Football")
+coding = st.checkbox("Coding")
+gaming = st.checkbox("Gaming")
+
+if football:
+    st.write("You selected Football ⚽")
+
+if coding:
+    st.write("You selected Coding 💻")
+
+if gaming:
+    st.write("You selected Gaming 🎮")
