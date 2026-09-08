@@ -19,19 +19,20 @@ def main():
 
       st.write(" ".join(st.session_state.guesses))
       if list(st.session_state.choice) == st.session_state.guesses:
-        st.success(f"Congratulations, you won the game with {5 - st.session_state.attempts} attempts left")
+        if st.success(f"Congratulations, you won the game with {5 - st.session_state.attempts} attempts left"):
+           
+          if st.button("Play Again!"):
+              for key in st.session_state.keys():
+                  del st.session_state[key]
+
+              st.rerun()
     else:
       st.session_state.attempts -= 1
       st.write(f"You have {st.session_state.attempts} attempts left.")
   else:
     st.write("This is not how to play the game!!")
 
-  if st.button("Play Again!"):
-
-    for key in st.session_state.keys():
-      del st.session_state[key]
-
-    st.rerun()
+ 
 
 if __name__ == "__main__":
   main()
