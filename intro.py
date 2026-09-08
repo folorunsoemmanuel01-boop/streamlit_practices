@@ -66,6 +66,7 @@ def hangman():
         st.session_state["input_number"] = 0
 
     # PLAY AGAIN FUNCTION
+    @st.cache_data
     def play_again():
 
         # Choose a new word
@@ -89,6 +90,9 @@ def hangman():
         # CHANGE INPUT KEY
         # This automatically clears the old text input
         st.session_state["input_number"] += 1
+
+        for key in st.session_state.keys():
+            del st.session_state[key]
 
         # Immediately restart
         st.rerun()
