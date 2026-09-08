@@ -12,10 +12,11 @@ def main():
 
   user_guess = st.text_input("Enter a character:")
   if user_guess is not None and len(user_guess) == 1:
-    if user_guess in choice:
+    if user_guess in st.session_state.choice:
       pass
     else:
-      st.write(f"You have {attempts - 1} attempts left.")
+      st.session_state.attempts -= 1
+      st.write(f"You have {st.session_state.attempts} attempts left.")
   else:
     st.error("This is not how to play the game!!")
 
