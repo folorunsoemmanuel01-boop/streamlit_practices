@@ -6,17 +6,20 @@ def main():
   words = ["Dog","Fish", "Donkey"]
 
   if "choice" not in st.session_state:
-    st.session_state.choice = random.choice(words)
+    st.session_state.choice = lower(random.choice(words))
     st.session_state.guesses = list(len(st.session_state.choice)*"_")
     st.session_state.attempts = 5
   
-  user_guess = st.text_input("Enter a character:")
+  user_guess = lower(st.text_input("Enter a character:"))
+  
   if len(user_guess) == 1:
     if user_guess in st.session_state.choice:
       pos = st.session_state.choice.find(user_guess)
       st.session_state.guesses[pos] = user_guess
 
       st.write(" ".join(st.session_state.guesses))
+      if list(st.session_state.choice) == st.session_state.guesses:
+        st.success(f"Congratulations, you won the game with {5 - st.session_state.attempts} attempts left")
     else:
       st.session_state.attempts -= 1
       st.write(f"You have {st.session_state.attempts} attempts left.")
