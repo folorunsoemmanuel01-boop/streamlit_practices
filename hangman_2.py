@@ -6,11 +6,11 @@ def main():
   words = ["Dog","Fish", "Donkey"]
 
   if "choice" not in st.session_state:
-    st.session_state.choice = lower(random.choice(words))
+    st.session_state.choice = random.choice(words).lower()
     st.session_state.guesses = list(len(st.session_state.choice)*"_")
     st.session_state.attempts = 5
   
-  user_guess = lower(st.text_input("Enter a character:"))
+  user_guess = st.text_input("Enter a character:").lower()
   
   if len(user_guess) == 1:
     if user_guess in st.session_state.choice:
