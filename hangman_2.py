@@ -12,7 +12,7 @@ def main():
   
   user_guess = st.text_input("Enter a character:").lower()
 
-  if st.button("Play"):
+    if st.button("Play"):
     if len(user_guess) == 1:
       if user_guess in st.session_state.choice:
         pos = st.session_state.choice.find(user_guess)
