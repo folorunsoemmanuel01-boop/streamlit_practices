@@ -28,7 +28,14 @@ def main():
               st.rerun()
     else:
       st.session_state.attempts -= 1
-      st.write(f"You have {st.session_state.attempts} attempts left.")
+      if st.session_state.attempts==0:
+        st.error("Game Over!")
+        for key in st.session_state.keys():
+              del st.session_state[key]
+        st.rerun()
+      
+      else:
+        st.write(f"You have {st.session_state.attempts} attempts left.")
   else:
     st.write("This is not how to play the game!!")
 
