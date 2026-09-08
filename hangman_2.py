@@ -11,7 +11,7 @@ def main():
     st.session_state.attempts = 5
 
   user_guess = st.text_input("Enter a character:")
-  if user_guess.isalpha() and len(user_guess) == 1:
+  if len(user_guess) == 1:
     if user_guess in st.session_state.choice:
       pass
     else:
