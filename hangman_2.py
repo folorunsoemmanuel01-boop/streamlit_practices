@@ -7,11 +7,11 @@ def main():
 
   if "choice" not in st.session_state:
     st.session_state.choice = random.choice(words)
-    st.session_state.guesses = len(choice)*"_"
+    st.session_state.guesses = len(st.session_state.choice)*"_"
     st.session_state.attempts = 5
 
   user_guess = st.text_input("Enter a character:")
-  if user_guess is not None and len(user_guess) == 1:
+  if user_guess.isalpha() and len(user_guess) == 1:
     if user_guess in st.session_state.choice:
       pass
     else:
