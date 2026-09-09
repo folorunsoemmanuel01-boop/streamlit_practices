@@ -3,7 +3,7 @@ import random
 
 def main():
   st.title("Hangman Game")
-  words = ["Dog","Fish", "Donkey"]
+  words = ["Dog","Fish","Onomatopoeia","Donkey"]
 
   if "choice" not in st.session_state:
     st.session_state.choice = random.choice(words).lower()
@@ -12,8 +12,8 @@ def main():
   
   user_guess = st.text_input("Enter a character:").lower()
 
-  if st.button("Play"):
-    if len(user_guess) == 1:
+  # if st.button("Play"):
+  if len(user_guess) == 1:
       if user_guess in st.session_state.choice:
         pos = st.session_state.choice.find(user_guess)
         st.session_state.guesses[pos] = user_guess
