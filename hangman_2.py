@@ -3,7 +3,7 @@ import random
 
 def main():
   st.title("Hangman Game")
-  words = ["Dog","Fish","Onomatopoeia","Donkey"]
+  words = ["Dog","Fish","Donkey"]
 
   if "choice" not in st.session_state:
     st.session_state.choice = random.choice(words).lower()
