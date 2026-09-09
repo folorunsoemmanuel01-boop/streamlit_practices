@@ -30,7 +30,7 @@ def main():
                 st.rerun()
       else:
         st.session_state.attempts -= 1
-        if st.session_state.attempts==0:
+        if st.session_state.attempts == 0:
           st.error("Game Over!")
           
           for key in st.session_state.keys():
