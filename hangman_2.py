@@ -37,7 +37,7 @@ def main():
         
         else:
           st.write(f"You have {st.session_state.attempts} attempts left.")
-    else:
+  else:
       st.write("This is not how to play the game!!")
 
  
