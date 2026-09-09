@@ -12,8 +12,8 @@ def main():
   
   user_guess = st.text_input("Enter a character:").lower()
 
-  # if st.button("Play"):
-  if len(user_guess) == 1:
+  if st.button("Play"):
+    if len(user_guess) == 1:
       if user_guess in st.session_state.choice:
         pos = st.session_state.choice.find(user_guess)
         st.session_state.guesses[pos] = user_guess
@@ -37,7 +37,7 @@ def main():
         
         else:
           st.write(f"You have {st.session_state.attempts} attempts left.")
-  else:
+    else:
       st.write("This is not how to play the game!!")
 
  
